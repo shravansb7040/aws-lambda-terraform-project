@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "ap-south-1"
+  region = "ap-south-2"
 }
 
 resource "aws_iam_role" "lambda_role" {
@@ -30,7 +30,7 @@ resource "aws_lambda_function" "terraform_lambda_func" {
   filename      = "/Users/shravansb/Documents/code-projects/test-lambda-function/target/test-lambda-function.jar"
   function_name = "Java-Lambda-Function-Test"
   role          = aws_iam_role.lambda_role.arn
-  handler       = "com.shravan.lambda.HealthCheckFunction::handleRequest"
+  handler       = "com.shravan.lambda.SimpleHandler::handleRequest"
   runtime       = "java17"
   timeout       = "900"
   depends_on    = [aws_iam_role_policy_attachment.attach_iam_policy_to_iam_role]
